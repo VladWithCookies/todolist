@@ -1,0 +1,25 @@
+html
+  head
+    title TodoList
+    base href="/"
+    = stylesheet_link_tag 'application'
+    
+  body ng-app="app"
+    .container
+      .navbar.navbar-default
+        .container-fluid
+          .navbar-header
+            a.navbar-brand href="/" TodoList
+
+          .collapse.navbar-collapse
+            ul.nav.navbar-nav.navbar-right
+              li 
+                =link_to 'Logout', destroy_user_session_path, method: :delete
+              li
+                a ui-sref="login" Log in
+              li
+                a ui-sref="register" Sign up
+      = yield
+
+
+    = javascript_include_tag 'application'

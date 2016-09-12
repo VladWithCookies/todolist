@@ -1,0 +1,15 @@
+h2 Sing Up
+
+.form-group
+  label Email:
+  input class="form-control" ng-model="register_user.email"
+
+.form-group
+  label Password: 
+  input class="form-control" type="password" ng-model="register_user.password"
+
+.form-group
+  label Password congirmation: 
+  input class="form-control" type="password" ng-model="register_user.password_confirmation"
+
+button ng-click="register()" class="btn btn-primary" Register

@@ -1,0 +1,17 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "projects";
+@import "angular-material";
+
+.rails-errors {
+  color: red;
+  font-size: 12px;
+}
+
+.glyphicon {
+  cursor: pointer;
+}
+
+.glyphicon:hover {
+  opacity: 0.6;
+}

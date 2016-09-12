@@ -1,0 +1,27 @@
+.list-group ng-repeat="project in projects"
+  .list-group-item.active
+    .row
+      .col-md-11
+        .list-group-item-heading ng-bind="project.title"
+      .col-md-1
+        span.glyphicon.glyphicon-pencil ui-sref="edit_project({id: project.id})"
+        span.glyphicon.glyphicon-trash ng-click="delete(project.id)"
+
+  .list-group-item 
+    div ng-include="'projects/task_form.html'" 
+
+  .list-group-item.task ng-repeat="task in project.tasks | orderBy:'priority'"
+    .row 
+      .col-md-10
+        input type="checkbox" ng-model="task.is_done" ng-change="mark(task.id)"
+        span.list-group-item-heading ng-bind="task.title" ui-sref="show_task({ id: task.id })"
+      .col-md-2
+        span.glyphicon.glyphicon-pencil ui-sref="edit_task({id: task.id})"
+        span.glyphicon.glyphicon-trash ng-click="deleteTask(task.id)"
+
+        span style="display: inline-block"
+          span.glyphicon.glyphicon-menu-up ng-click="priorityUp(task.id)"
+          br
+          span.glyphicon.glyphicon-menu-down ng-click="priorityDown(task.id)"
+
+.btn.btn-primary ui-sref="new_project" ADD TODO

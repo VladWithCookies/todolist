@@ -13,9 +13,9 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*
-/tmp/*
 !/log/.keep
-!/tmp/.keep
+/tmp
+/app/assets/javascripts/oxymoron.js
 
-# Ignore Byebug command history file.
-.byebug_history
+.ruby-gemset
+.ruby-version

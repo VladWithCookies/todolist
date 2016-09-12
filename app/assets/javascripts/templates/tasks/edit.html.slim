@@ -1,0 +1,8 @@
+h2 Edit Task
+form ng-submit="update()"
+  label for="title" Title 
+  input name="title" type="text" placeholder="Title" ng-model="task.title" class="form-control"
+  br
+  .btn-group
+    button type="submit" class="btn btn-primary" Submit
+    a ui-sref="list" class="btn btn-default" Cancel

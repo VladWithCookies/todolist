@@ -1,0 +1,21 @@
+h2 ng-bind="task.title"
+
+h3 Choose deadline
+md-datepicker ng-model="task.deadline" ng-change="addDeadline(task.id)"
+
+h3 Add comment
+form ng-submit="addComment(task.id)"
+  .input-group
+    input type="text" ng-model="comment.text" class="form-control"
+    span.input-group-btn
+      button type="submit" class="btn btn-primary" Submit
+
+
+h3 Comments
+ul class="list-group"
+  li class="list-group-item" ng-repeat="comment in task.comments" 
+    .row
+      .col-md-11
+        span ng-bind="comment.text"
+      .col-md-1
+        span.glyphicon.glyphicon-trash ng-click="deleteComment(comment.id)"
