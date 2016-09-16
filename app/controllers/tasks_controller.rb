@@ -1,9 +1,9 @@
 class TasksController < ApplicationController
   respond_to :html, :json
   before_action :get_task, except: :create
-
+  
   def show 
-    respond_with(@task.as_json(include: :comments))
+    respond_with(@task.as_json(include: { comments: { include: :comment_files } }))
   end
 
   def create  

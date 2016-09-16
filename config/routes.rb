@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     post :priority_down, on: :member
   end
 
-  resources :comments
+  resources :comments do
+    post :add_file, on: :member
+  end
 
 end

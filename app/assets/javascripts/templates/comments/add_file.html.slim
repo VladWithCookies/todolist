@@ -1,0 +1,16 @@
+h1 ng-bind="comment.text"
+
+.row
+  .col-md-12
+    input type="file" nv-file-select="true" uploader="uploader"
+      ul
+        li ng-repeat="item in uploader.queue" 
+          span ng-bind="item.file.name"
+          button ng-click="item.upload()" Upload
+
+.row 
+  .col-md-2 ng-repeat="file in comment.comment_files"
+    a href="{{file.comment_file.url}}" class="thumbnail"
+      img ng-src="{{file.comment_file.url}}"
+
+a ui-sref="show_task({ id: comment.task_id })" class="btn btn-default" Back

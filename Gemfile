@@ -69,3 +69,8 @@ gem 'angularjs-rails'
 gem 'angular-ui-router-rails'
 gem 'angular-rails-templates'
 gem 'rails-angular-material'
+
+gem 'angularjs-file-upload-rails'
+
+gem 'carrierwave'
+gem 'cloudinary'

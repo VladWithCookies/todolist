@@ -12,13 +12,12 @@ html
             a.navbar-brand href="/" TodoList
 
           .collapse.navbar-collapse
-            ul.nav.navbar-nav.navbar-right
-              li 
-                =link_to 'Logout', destroy_user_session_path, method: :delete
+            ul.nav.navbar-nav.navbar-right 
               li
-                a ui-sref="login" Log in
-              li
-                a ui-sref="register" Sign up
+                a ui-sref="login" Login
+              li ng-controller="AuthCtrl"
+                a href="" ng-click="logout()" Logout
+
       = yield
 
 

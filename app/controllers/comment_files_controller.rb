@@ -1,0 +1,2 @@
+class CommentFilesController < ApplicationController
+end
