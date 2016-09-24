@@ -71,6 +71,6 @@ gem 'angular-rails-templates'
 gem 'rails-angular-material'
 
 gem 'angularjs-file-upload-rails'
-
 gem 'carrierwave'
 gem 'cloudinary'
+

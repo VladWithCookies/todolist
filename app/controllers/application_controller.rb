@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   skip_before_action :verify_authenticity_token
 
+  rescue_from CanCan::AccessDenied do |exception|
+    render status: 401
+  end
+
   def index
     render layout: layout_name
   end 

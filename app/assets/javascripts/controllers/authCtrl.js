@@ -1,10 +1,27 @@
 angular.module('app.auth', [])
 
-.controller('AuthCtrl', ['$scope', '$http', '$state', function($scope, $http, $state) {
+.config(function($httpProvider) {
+  var interceptor = function($q, $location, $rootScope) {
+    return {
+      'responseError': function(rejection) {
+        if(rejection.status == 401) {
+          $rootScope.$broadcast('event:unauthorized');
+          $location.path('/login')
+        }
+        return $q.reject(rejection);
+      }
+    }
+  }
+  $httpProvider.interceptors.push(interceptor);
+})
+
+.controller('AuthCtrl', ['$scope', '$http', '$state', 'Users', 'flash', function($scope, $http, $state, Users, flash) {
   $scope.login_user = { email: null, password: null };
-  $scope.register_user = {email: null, password: null, password_confirmation: null};
-  $scope.register_error = {message: null, errors: {}};
-  $scope.login_error = {message: null, errors: {}};  
+  $scope.register_user = { email: null, password: null, password_confirmation: null};
+  $scope.register_error = { message: null, errors: {}};
+  $scope.login_error = { message: null, errors: {}};  
+  $scope.currentUser = Users.get_current_user();
+  $scope.flash = flash;
 
   $scope.login = function() {
     $scope.submit({
@@ -47,6 +64,8 @@ angular.module('app.auth', [])
     $http({ method: parameters.method, url: parameters.url, data: parameters.data })
     .success(function(data, status){
       if (status == 201 || status == 204){
+        $scope.currentUser = Users.get_current_user();      
+        flash.setMessage(parameters.success_message);
         $scope.reset_users();
         $state.go('list');
       } else if (data.error) {

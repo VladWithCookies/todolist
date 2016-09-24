@@ -1,3 +1,5 @@
+div ng-include="'partials/nav_bar.html'" 
+
 ul class="nav nav-tabs"
   li role="presentation"
     a href="" ui-sref="login" Log In
@@ -36,3 +38,5 @@ ul class="nav nav-tabs"
     span ng-bind="field_error"
 
 button ng-click="register()" class="btn btn-primary" Register
+span or
+a href="/users/auth/facebook" class="btn btn-default" Sign in with FB

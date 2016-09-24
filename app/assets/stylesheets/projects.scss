@@ -6,14 +6,15 @@ form {
   margin: 0;
 }
 
-span.list-group-item-heading {
+p.list-group-item-heading {
   padding: 5px;
   position: relative;
   top: -3px;
+  display: inline-block;
+  width: 95%;
 }
 
 .task:hover {
   background-color: #fcfed5;
   cursor: pointer;
 }
-

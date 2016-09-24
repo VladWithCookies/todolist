@@ -1,4 +1,6 @@
 /*
+= require jquery
+= require bootstrap-sprockets
 = require angular
 = require angular-ui-router 
 = require angular-rails-templates
@@ -6,7 +8,6 @@
 = require angular-aria
 = require angular-resource
 = require angular-material
-
 = require angularjs-file-upload
 = require_tree .
 */
@@ -20,13 +21,18 @@ var app = angular.module('app', [
   'app.projectsFactory',
   'app.tasksFactory',
   'app.commentsFactory',
+  'app.usersFactory',
+
+  'app.flashFactory',
+
   'ngAria', 
   'ngMaterial', 
   'ngAnimate', 
   'ngResource',
   'ui.router', 
   'templates',
-  'angularFileUpload'
+  'angularFileUpload',
+
 ]);
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
@@ -67,9 +73,9 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
       controller: 'AuthCtrl'
     })
     .state('add_file', {
-      url: '/comments/:id/add_file',
+      url: '/comments/:id',
       templateUrl: 'comments/add_file.html',
-      controller: 'CommentsCtrl'
+      controller: 'CommentCtrl'
     });
 
   $urlRouterProvider.otherwise('/');

@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   respond_to :html, :json
   before_action :get_project, except: [:index, :create]
+  load_and_authorize_resource
 
   def index 
     @projects = Project.where(user: current_user)

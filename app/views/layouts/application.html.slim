@@ -6,19 +6,6 @@ html
     
   body ng-app="app"
     .container
-      .navbar.navbar-default
-        .container-fluid
-          .navbar-header
-            a.navbar-brand href="/" TodoList
-
-          .collapse.navbar-collapse
-            ul.nav.navbar-nav.navbar-right 
-              li
-                a ui-sref="login" Login
-              li ng-controller="AuthCtrl"
-                a href="" ng-click="logout()" Logout
-
       = yield
-
-
+      
     = javascript_include_tag 'application'

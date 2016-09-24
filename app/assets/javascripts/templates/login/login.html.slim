@@ -1,3 +1,6 @@
+div ng-include="'partials/nav_bar.html'" 
+div ng-include="'partials/flash_notice.html'"
+
 ul class="nav nav-tabs"
   li role="presentation" class="active"
     a href="" Log In
@@ -27,3 +30,5 @@ ul class="nav nav-tabs"
     span ng-bind="field_error"
 
 button class="btn btn-primary" ng-click="login()" Login
+span or 
+a href="/users/auth/facebook" class="btn btn-default" Sign in with FB

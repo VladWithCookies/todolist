@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
-
+  devise_for :users, controllers: { omniauth_callbacks: "callbacks" }
   root 'application#index'
 
   resources :projects
@@ -16,4 +15,5 @@ Rails.application.routes.draw do
     post :add_file, on: :member
   end
 
+  post '/users/get_current_user' => 'users#get_current_user'
 end
