@@ -29,4 +29,11 @@ module AcceptenceHelper
     fill_in 'comment[text]', with: text
     click_button("Submit")
   end
+
+  def mock_auth
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new(provider: 'facebokk',
+                                                                  uid: '12345678910',
+                                                                  info: {email: 'test@example.com'})
+  end
 end

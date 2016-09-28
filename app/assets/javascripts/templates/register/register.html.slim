@@ -30,7 +30,7 @@ ul class="nav nav-tabs"
 
 .form-group
   label Password confirmation: 
-  input.form-control name="user[password_confirmation" type="password" ng-model="register_user.password_confirmation"
+  input.form-control name="user[password_confirmation]" type="password" ng-model="register_user.password_confirmation"
 
 .error ng-show="register_error.errors.password_confirmation"
   div ng-repeat="field_error in register_error.errors.password_confirmation"

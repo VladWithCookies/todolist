@@ -9,7 +9,6 @@ feature 'task', js: true do
 
   scenario "user can update task" do
     find('.task-update').click
-    sleep 2
     fill_in 'task[title]', with: "updated"
     click_button("Submit")
     expect(page).to have_content("updated")

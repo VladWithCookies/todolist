@@ -5,10 +5,9 @@ RSpec.describe TasksController, type: :controller do
   let(:project) { FactoryGirl.create(:project, user: user) }
   let(:task) { FactoryGirl.create(:task, project: project) }
 
-  before { sign_in user }
-
   describe 'POST #create' do
     it "creates new task" do
+      sign_in user
       expect { post :create, title: "New task", project_id: project.id }.to change(Task, :count).by(1)
     end
   end

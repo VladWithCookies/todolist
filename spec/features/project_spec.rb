@@ -13,7 +13,6 @@ feature 'project', js: true do
 
   scenario "user can update projects" do
     find('.glyphicon-pencil').click
-    sleep 2
     fill_in 'project[title]', with: "updated"
     click_button('Submit')
     sign_in user

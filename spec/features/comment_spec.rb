@@ -20,7 +20,5 @@ feature 'comment', js: true do
     find('.delete-comment').click
     expect(page).not_to have_content('some text')
   end
-
-  scenario "user can attache files to comments"
   
 end
