@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'application#index'
 
   resources :projects
-
+  
   resources :tasks do
     post :mark, on: :member
     post :deadline, on: :member

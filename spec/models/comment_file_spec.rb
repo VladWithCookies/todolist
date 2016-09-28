@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe CommentFile, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'belongs to comment' do
+    should belong_to(:comment)
+  end
 end

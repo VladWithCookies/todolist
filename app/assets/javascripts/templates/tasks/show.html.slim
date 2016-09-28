@@ -7,7 +7,7 @@ md-datepicker ng-model="task.deadline" ng-change="addDeadline(task.id)"
 h3 Add comment
 form ng-submit="addComment(task.id)"
   .input-group
-    input type="text" ng-model="comment.text" class="form-control"
+    input type="text" name="comment[text]" ng-model="comment.text" class="form-control"
     span.input-group-btn
       button type="submit" class="btn btn-primary" Submit
 
@@ -19,7 +19,7 @@ ul class="list-group"
       .col-md-11
         span ng-bind="comment.text"
       .col-md-1
-        span.glyphicon.glyphicon-trash ng-click="deleteComment(comment.id)"
+        span.glyphicon.glyphicon-trash.delete-comment ng-click="deleteComment(comment.id)"
         span.glyphicon.glyphicon-paperclip ui-sref="add_file({id: comment.id})"
     
     .row

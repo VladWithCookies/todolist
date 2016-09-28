@@ -35,13 +35,13 @@ class ProjectsController < ApplicationController
     if @project.update(project_params)
       render json: @project.as_json, status: :ok
     else 
-      render json: { project: @project.errors, status: :unprocessable_entity }
+      render json: { project: @project.errors, status: :unprocessable_entity }  
     end
   end
 
   private 
     def project_params
-      params.require(:project).permit(:title)
+      params.permit(:title)
     end
 
     def get_project

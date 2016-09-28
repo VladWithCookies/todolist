@@ -12,7 +12,7 @@ ul class="nav nav-tabs"
 
 .form-group
   label Email:
-  input class="form-control" ng-model="register_user.email"
+  input class="form-control" name="user[email]" ng-model="register_user.email"
 
 .error ng-show="register_error.errors.email"
   div ng-repeat="field_error in register_error.errors.email" 
@@ -21,7 +21,7 @@ ul class="nav nav-tabs"
 
 .form-group
   label Password: 
-  input class="form-control" type="password" ng-model="register_user.password"
+  input class="form-control" name="user[password]" type="password" ng-model="register_user.password"
 
 .error ng-show="register_error.errors.password"
   div ng-repeat="field_error in register_error.errors.password"
@@ -30,7 +30,7 @@ ul class="nav nav-tabs"
 
 .form-group
   label Password confirmation: 
-  input class="form-control" type="password" ng-model="register_user.password_confirmation"
+  input.form-control name="user[password_confirmation" type="password" ng-model="register_user.password_confirmation"
 
 .error ng-show="register_error.errors.password_confirmation"
   div ng-repeat="field_error in register_error.errors.password_confirmation"

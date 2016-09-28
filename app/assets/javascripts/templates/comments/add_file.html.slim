@@ -4,11 +4,14 @@ h1 ng-bind="comment.text"
 
 .row
   .col-md-12
-    input type="file" nv-file-select="true" uploader="uploader"
-      ul
-        li ng-repeat="item in uploader.queue" 
-          span ng-bind="item.file.name"
-          button ng-click="item.upload()" Upload
+    .upload-form
+      input type="file" nv-file-select="true" uploader="uploader"
+        div ng-repeat="item in uploader.queue" 
+          .row
+            .col-md-2
+              md-progress-linear md-mode="determinate" value="{{item.progress}}"
+            span ng-bind="item.file.name"
+            button.btn.btn-default ng-click="item.upload()" Upload
 
 .row 
   .col-md-2 ng-repeat="file in comment.comment_files"

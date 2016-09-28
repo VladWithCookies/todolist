@@ -1,5 +1,5 @@
 form ng-submit="addTask(project.id)"
   .input-group
-    input type="text" class="form-control" ng-model="tasks[project.id].title"
+    input type="text" class="form-control" name="task[title]" ng-model="tasks[project.id].title"
     span.input-group-btn
       button type="submit" class="btn btn-primary" Add Todo

@@ -12,8 +12,8 @@ ul class="nav nav-tabs"
   p ng-bind="login_error.message"
 
 .form-group
-  label Email:
-  input class="form-control" ng-model="login_user.email"
+  label for="email" Email:
+  input.form-control type="email" name="user[email]" ng-model="login_user.email"
 
 .error ng-show="login_error.errors.email"
   div ng-repeat="field_error in login_error.errors.email" 
@@ -22,7 +22,7 @@ ul class="nav nav-tabs"
 
 .form-group
   label Password: 
-  input class="form-control" type="password" ng-model="login_user.password"
+  input.form-control type="password" name="user[password]" ng-model="login_user.password"
 
 .error ng-show="login_error.errors.password"
   div ng-repeat="field_error in login_error.errors.password" 
