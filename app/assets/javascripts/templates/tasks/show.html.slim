@@ -7,7 +7,7 @@ md-datepicker ng-model="task.deadline" ng-change="addDeadline(task.id)"
 h3 Add comment
 form ng-submit="addComment(task.id)"
   .input-group
-    input type="text" name="comment[text]" ng-model="comment.text" class="form-control"
+    input.form-control.create-comment type="text" name="comment[text]" ng-model="comment.text"
     span.input-group-btn
       button type="submit" class="btn btn-primary" Submit
 

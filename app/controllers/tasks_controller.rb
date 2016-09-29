@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   respond_to :html, :json
   before_action :get_task, except: :create
-  
+  load_and_authorize_resource except: [:create]
   def show 
     respond_with(@task.as_json(include: { comments: { include: :comment_files } }))
   end
@@ -76,7 +76,7 @@ class TasksController < ApplicationController
 
   private 
     def task_params 
-      params.permit(:deadline, :title, :project_id)
+      params.require(:task).permit(:deadline, :title, :project_id)
     end
 
     def get_task

@@ -32,7 +32,7 @@ RSpec.describe ProjectsController, type: :controller do
   describe 'POST #create' do
     context 'unauthorized user try to create project' do
       it "get 401" do
-        post :create, title: "New project" 
+        post :create, project: { title: "New project" }
         expect(response).to have_http_status(401)
       end
     end
@@ -41,7 +41,7 @@ RSpec.describe ProjectsController, type: :controller do
       before { sign_in user }
 
       it "creates new project" do
-        expect { post :create, title: "New project" }.to change(Project, :count).by(1)
+        expect { post :create, project: { title: "New project" } }.to change(Project, :count).by(1)
       end
     end
   end
@@ -75,7 +75,7 @@ RSpec.describe ProjectsController, type: :controller do
     context 'authorized user try to update project' do
       before do 
         sign_in user
-        put :update, id: project.id, title: 'some new title'
+        put :update, id: project.id, project: { title: 'some new title' }
       end
 
       it "updates project" do 

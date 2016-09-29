@@ -5,18 +5,37 @@ RSpec.describe TasksController, type: :controller do
   let(:project) { FactoryGirl.create(:project, user: user) }
   let(:task) { FactoryGirl.create(:task, project: project) }
 
+  before do
+    apply_abilities
+    sign_in user
+  end
+
   describe 'POST #create' do
     it "creates new task" do
       sign_in user
-      expect { post :create, title: "New task", project_id: project.id }.to change(Task, :count).by(1)
+      expect { post :create, task: { title: "New task" }, project_id: project.id }.to change(Task, :count).by(1)
     end
   end
 
-  describe 'PUT #destroy' do
-    it "delete task" do
-      task.reload
-      expect { delete :destroy, id: task.id }.to change(Task, :count).by(-1)
+  describe 'DELETE #destroy' do
+    context 'authorized user try to delete task' do 
+      it "delete task" do
+        task.reload
+        expect { delete :destroy, id: task.id }.to change(Task, :count).by(-1)
+      end
     end
+
+    context 'unauthorized user try to delete task' do 
+      before do
+        @ability.cannot :destroy, Task
+        delete :destroy, id: task.id
+      end
+
+      it "get 401" do
+        expect(response).to have_http_status(401)
+      end
+    end
+
   end
 
   describe 'POST #mark' do

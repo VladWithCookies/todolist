@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   respond_to :html, :json
   before_action :get_comment, except: [:create]
+  load_and_authorize_resource except: [:create]
 
   def show
     respond_with(@comment.as_json(include: :comment_files))
@@ -40,7 +41,7 @@ class CommentsController < ApplicationController
 
   private 
     def comment_params 
-      params.permit(:text, :task_id)
+      params.require(:comment).permit(:text, :task_id)
     end
 
     def get_comment

@@ -15,7 +15,7 @@ feature 'comment', js: true do
     expect(page).to have_content('some text')
   end
 
-  scenario "user can delete cpmments" do 
+  scenario "user can delete comments" do 
     create_comment("some text")
     find('.delete-comment').click
     expect(page).not_to have_content('some text')

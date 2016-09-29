@@ -15,7 +15,6 @@ feature 'project', js: true do
     find('.glyphicon-pencil').click
     fill_in 'project[title]', with: "updated"
     click_button('Submit')
-    sign_in user
     expect(page).to have_content("updated")
   end
 
@@ -25,7 +24,7 @@ feature 'project', js: true do
   end
 
   scenario "user can add task to project" do
-    create_task("New Task")
+    create_task("New task")
     expect(page).to have_content("New task")
   end
 

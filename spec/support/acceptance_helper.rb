@@ -21,7 +21,7 @@ module AcceptenceHelper
   end
 
   def create_task(title)
-    fill_in 'task[title]', with: "New task"
+    fill_in 'task[title]', with: title
     click_button("Add Todo")
   end
 

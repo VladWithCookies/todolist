@@ -22,6 +22,7 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config| 
   config.include Capybara::DSL
   config.include AcceptenceHelper, type: :feature
+  config.include ControllerHelper, type: :controller
   Capybara.javascript_driver = :poltergeist
 
   config.render_views = true
