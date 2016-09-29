@@ -22,12 +22,12 @@ div ng-include="'partials/nav_bar.html'"
           .list-group-item-heading ng-bind="task.title" ui-sref="show_task({ id: task.id })"
         .col-md-2
           span.task-move style="display: inline-block"
-            span.glyphicon.glyphicon-menu-up ng-click="priorityUp(task)"
+            span.glyphicon.glyphicon-menu-up ng-click="priorityUp(task, project)"
             br
-            span.glyphicon.glyphicon-menu-down ng-click="priorityDown(task)"
+            span.glyphicon.glyphicon-menu-down ng-click="priorityDown(task, project)"
 
           span.glyphicon.glyphicon-pencil.task-update ui-sref="edit_task({id: task.id})"
-          span.glyphicon.glyphicon-trash.task-delete ng-click="deleteTask(task)"
+          span.glyphicon.glyphicon-trash.task-delete ng-click="deleteTask(task, project)"
 
   .add-project-btn
     button.btn.btn-primary ui-sref="new_project" ADD TODO

@@ -5,7 +5,7 @@ class Task < ActiveRecord::Base
   validates :title, presence: true
 
   after_destroy :refresh_task_priorities
-
+  
   def refresh_task_priorities
     project.tasks.order(:priority).each_with_index { |task, i| task.update(priority: i) }
   end

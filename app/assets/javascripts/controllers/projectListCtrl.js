@@ -1,47 +1,69 @@
 angular.module('app.projectList', [])
 
-.controller('ProjectListCtrl', ['$scope', '$http', '$resource', '$location', 'Projects', 'Project', 'Tasks', 'Task', function($scope, $http, $resource, $location, Projects, Project, Tasks, Task) {
-  $scope.projects = Projects.query();
-  $scope.tasks = []
-  
-  $scope.delete = function(project) {
-    Project.delete({id: project.id}, function() {
-      $scope.projects.splice($scope.projects.indexOf(project), 1)
-    })
-  }
+.controller('ProjectListCtrl', [
+  '$scope', 
+  '$http', 
+  '$resource', 
+  '$location',
+  '$filter', 
+  'Projects', 
+  'Project', 
+  'Tasks', 
+  'Task', 
 
-  $scope.addTask = function(project) {
-    Tasks.create({ project_id: project.id, task: $scope.tasks[project.id] }, function(task) {
-      project.tasks.push(task)
-      $scope.tasks = {}
-    });
-  }
+  function($scope, $http, $resource, $location, $filter, Projects, Project, Tasks, Task) {
+    $scope.projects = Projects.query();
+    $scope.tasks = []
+    
+    $scope.delete = function(project) {
+      Project.delete({id: project.id}, function() {
+        $scope.projects.splice($scope.projects.indexOf(project), 1)
+      })
+    }
 
-  $scope.deleteTask = function(task) {
-    Task.delete({ id: task.id }, function() {
-      $scope.projects = Projects.query();
-    })
-  }
+    $scope.addTask = function(project) {
+      Tasks.create({ project_id: project.id, task: $scope.tasks[project.id] }, function(task) {
+        if (task.title) project.tasks.push(task)
+        $scope.tasks = {}
+      });
+    }
 
-  $scope.mark = function(task) {
-    Task.mark({ id: task.id });
-  }
+    $scope.deleteTask = function(task, project) {
+      Task.delete({ id: task.id }, function() {
+        project.tasks.splice(project.tasks.indexOf(task), 1)
+      })
+    }
 
-  $scope.update = function() {
-    Project.update({ id: $scope.project.id, project: $scope.project }, function() {
-      $location.path('/')
-    })
-  }
+    $scope.mark = function(task) {
+      Task.mark({ id: task.id });
+    }
 
-  $scope.priorityUp = function(task) {
-    Task.priority_up({ id: task.id }, function() {
-      $scope.projects = Projects.query();
-    })
-  }
+    $scope.update = function() {
+      Project.update({ id: $scope.project.id, project: $scope.project }, function() {
+        $location.path('/')
+      })
+    }
 
-  $scope.priorityDown = function(task) {
-    Task.priority_down({ id: task.id }, function() {
-      $scope.projects = Projects.query();
-    })
+    $scope.priorityUp = function(task, project) {
+      Task.priority_up({ id: task.id }, function() {
+        var nextTask = $filter("filter")(project.tasks, { priority: task.priority - 1 })[0];
+
+        if (nextTask.priority >= 0) {
+          task.priority -= 1;
+          nextTask.priority += 1;
+        }
+      })
+    }
+
+    $scope.priorityDown = function(task, project) {
+      Task.priority_down({ id: task.id }, function() {
+        var prevTask = $filter("filter")(project.tasks, { priority: task.priority + 1 })[0];
+
+        if (prevTask.priority) {
+          task.priority += 1;
+          prevTask.priority -=1 ;
+        }
+      })
+    }
   }
-}]);
+]);
