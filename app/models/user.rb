@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, 
          omniauth_providers: [:facebook]
          
-  has_many :projects
+  has_many :projects, dependent: :destroy
 
   def is_facebook_account
     self[:provider].present? && self[:uid].present?

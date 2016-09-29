@@ -1,33 +1,35 @@
 div ng-include="'partials/nav_bar.html'" 
-div ng-include="'partials/flash_notice.html'"
 
-ul class="nav nav-tabs"
-  li role="presentation" class="active"
-    a href="" Log In
+.container
+  div ng-include="'partials/flash_notice.html'"
 
-  li role="presentation"
-    a href="" ui-sref="register" Sign Up
+  ul class="nav nav-tabs"
+    li role="presentation" class="active"
+      a href="" Log In
 
-.error ng-show="login_error.message"
-  p ng-bind="login_error.message"
+    li role="presentation"
+      a href="" ui-sref="register" Sign Up
 
-.form-group
-  label for="email" Email:
-  input.form-control type="email" name="user[email]" ng-model="login_user.email"
+  .error ng-show="login_error.message"
+    p ng-bind="login_error.message"
 
-.error ng-show="login_error.errors.email"
-  div ng-repeat="field_error in login_error.errors.email" 
-  span Email 
-  span ng-bind="field_error"
+  .form-group
+    label for="email" Email:
+    input.form-control type="email" name="user[email]" ng-model="login_user.email"
 
-.form-group
-  label Password: 
-  input.form-control type="password" name="user[password]" ng-model="login_user.password"
-
-.error ng-show="login_error.errors.password"
-  div ng-repeat="field_error in login_error.errors.password" 
-    span Password  
+  .error ng-show="login_error.errors.email"
+    div ng-repeat="field_error in login_error.errors.email" 
+    span Email 
     span ng-bind="field_error"
 
-button class="btn btn-primary" ng-click="login()" Login
-a.btn.btn-default.fb href="/users/auth/facebook" Sign in with FB
+  .form-group
+    label Password: 
+    input.form-control type="password" name="user[password]" ng-model="login_user.password"
+
+  .error ng-show="login_error.errors.password"
+    div ng-repeat="field_error in login_error.errors.password" 
+      span Password  
+      span ng-bind="field_error"
+
+  button class="btn btn-primary" ng-click="login()" Login
+  a.btn.btn-default.fb href="/users/auth/facebook" Sign in with FB

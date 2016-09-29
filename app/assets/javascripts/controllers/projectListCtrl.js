@@ -4,46 +4,43 @@ angular.module('app.projectList', [])
   $scope.projects = Projects.query();
   $scope.tasks = []
   
-  $scope.delete = function(projectID) {
-    Project.delete({id: projectID}, function() {
-      $scope.projects = Projects.query();
-      $location.path('/');
+  $scope.delete = function(project) {
+    Project.delete({id: project.id}, function() {
+      $scope.projects.splice($scope.projects.indexOf(project), 1)
     })
   }
 
-  $scope.addTask = function(projectID) {
-    Tasks.create({ project_id: projectID, task: $scope.tasks[projectID] }, function() {
-      $scope.projects = Projects.query();
+  $scope.addTask = function(project) {
+    Tasks.create({ project_id: project.id, task: $scope.tasks[project.id] }, function(task) {
+      project.tasks.push(task)
       $scope.tasks = {}
     });
   }
 
-  $scope.deleteTask = function(taskID) {
-    Task.delete({ id: taskID }, function() {
+  $scope.deleteTask = function(task) {
+    Task.delete({ id: task.id }, function() {
       $scope.projects = Projects.query();
     })
   }
 
-  $scope.mark = function(taskID) {
-    Task.mark({ id: taskID }, function() {
-      $scope.projects = Projects.query();
-    })
+  $scope.mark = function(task) {
+    Task.mark({ id: task.id });
   }
 
-   $scope.update = function() {
+  $scope.update = function() {
     Project.update({ id: $scope.project.id, project: $scope.project }, function() {
       $location.path('/')
     })
   }
 
-  $scope.priorityUp = function(taskId) {
-    Task.priority_up({ id: taskId }, function() {
+  $scope.priorityUp = function(task) {
+    Task.priority_up({ id: task.id }, function() {
       $scope.projects = Projects.query();
     })
   }
 
-  $scope.priorityDown = function(taskId) {
-    Task.priority_down({ id: taskId }, function() {
+  $scope.priorityDown = function(task) {
+    Task.priority_down({ id: task.id }, function() {
       $scope.projects = Projects.query();
     })
   }

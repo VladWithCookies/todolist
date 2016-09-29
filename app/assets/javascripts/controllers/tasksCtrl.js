@@ -11,25 +11,26 @@ angular.module('app.task', [])
   'Comment',
 
 function($scope, $http, $resource, $location, Task, $stateParams, Comments, Comment) {
-  $scope.task = Task.get({ id: $stateParams.id })
+  $scope.task = Task.get({ id: $stateParams.id }) 
   $scope.comment = {}
 
-  $scope.addComment = function(taskID) {
-    Comments.create({ task_id: taskID, comment: $scope.comment }, function() {
-      $scope.task = Task.get({ id: $stateParams.id });
+  $scope.addComment = function(task) {
+    Comments.create({ task_id: task.id, comment: $scope.comment }, function(comment) {
+      task.comments.push(comment)
       $scope.comment = {}
     });
   }
 
-  $scope.deleteComment = function(commentID) {
-    Comment.delete({ id: commentID }, function() {
-      $scope.task = Task.get({ id: $stateParams.id });
+  $scope.deleteComment = function(comment) {
+    Comment.delete({ id: comment.id }, function() {
+      var comments = $scope.task.comments
+      comments.splice(comments.indexOf(comment), 1)
     })      
   }
 
-  $scope.addDeadline = function(taskID) {
-    Task.deadline({ id: taskID, deadline: $scope.task.deadline }, function() {
-      $scope.task = Task.get({ id: $stateParams.id });
+  $scope.addDeadline = function(task) {
+    Task.deadline({ id: task.id, deadline: $scope.task.deadline }, function() {
+      $scope.task.deadline = task.deadline
     })
   }
 

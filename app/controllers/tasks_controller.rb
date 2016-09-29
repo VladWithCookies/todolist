@@ -2,6 +2,7 @@ class TasksController < ApplicationController
   respond_to :html, :json
   before_action :get_task, except: :create
   load_and_authorize_resource except: [:create]
+
   def show 
     respond_with(@task.as_json(include: { comments: { include: :comment_files } }))
   end

@@ -1,10 +1,11 @@
 div ng-include="'partials/nav_bar.html'" 
 
-h2 Edit Task
-form ng-submit="update()"
-  label Title 
-  input.form-control name="task[title]" type="text" placeholder="Title" ng-model="task.title"
-  br
-  .btn-group
-    button type="submit" class="btn btn-primary" Submit
-    a ui-sref="list" class="btn btn-default" Cancel
+.container
+  h2 Edit Task
+  form ng-submit="update()"
+    label Title 
+    input.form-control name="task[title]" type="text" placeholder="Title" ng-model="task.title"
+    br
+    .btn-group
+      button type="submit" class="btn btn-primary" Submit
+      a ui-sref="list" class="btn btn-default" Cancel

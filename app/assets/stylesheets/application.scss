@@ -4,6 +4,25 @@
 @import "comments";
 @import "angular-material";
 
+html, body {
+  background-image: url("http://res.cloudinary.com/dluf3l4ys/image/upload/v1475098284/index_g7oyxq.png");
+}
+
+.navbar {
+  margin-bottom: 0; 
+  border-radius: 0;
+  border: 0;
+  border-bottom: 2px solid #4dd0e1;
+}
+
+.container {
+  background-color: white;
+  height:100%;
+  width: 80%;
+  padding: 30px 100px 0 100px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
 .rails-errors {
   color: red;
   font-size: 12px;
