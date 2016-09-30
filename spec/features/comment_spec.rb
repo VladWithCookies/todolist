@@ -7,6 +7,7 @@ feature 'comment', js: true do
 
   before do
     sign_in user
+    expect(page).to have_content("ADD TODO")
     visit("/#/tasks/#{task.id}")
   end
 

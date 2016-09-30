@@ -26,6 +26,9 @@ module AcceptenceHelper
   end
 
   def create_comment(text)
+    sign_in user
+    visit("/#/tasks/#{task.id}")
+
     fill_in 'comment[text]', with: text
     click_button("Submit")
   end

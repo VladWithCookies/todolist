@@ -65,9 +65,10 @@ angular.module('app.auth', [])
     .success(function(data, status){
       if (status == 201 || status == 204){
         $scope.currentUser = Users.get_current_user();      
-        flash.setMessage(parameters.success_message);
         $scope.reset_users();
+        flash.setMessage(parameters.success_message);
         $state.go('list');
+        flash.setMessage(parameters.success_message);
       } else if (data.error) {
         parameters.error_entity.message = data.error;
       }
