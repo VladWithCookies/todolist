@@ -10,16 +10,17 @@ RSpec.describe Ability, type: :model do
     let(:task) { FactoryGirl.create(:task, project: project) }
     let(:comment) { FactoryGirl.create(:comment, task: task)}
 
-    context 'for projects' do 
+    context 'Able to manage owned resources' do 
       it { expect(ability).to be_able_to(:manage, project) }
-    end
-
-    context 'for tasks' do
       it { expect(ability).to be_able_to(:manage, task) }
-    end
-
-    context 'for comments' do
       it { expect(ability).to be_able_to(:manage, comment) }
     end
+
+    context 'Able to manage not owned resources' do 
+      it { expect(ability).not_to be_able_to(:manage, FactoryGirl.create(:project)) }
+      it { expect(ability).not_to be_able_to(:manage, FactoryGirl.create(:task)) }
+      it { expect(ability).not_to be_able_to(:manage, FactoryGirl.create(:comment)) }
+    end
+
   end
 end
