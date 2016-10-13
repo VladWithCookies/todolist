@@ -34,11 +34,16 @@ angular.module('app.auth', [])
   };  
 
   $scope.logout = function() {
-    $scope.submit({
-      method: 'DELETE', 
-      url: '../users/sign_out.json', 
-      success_message: "You have been logged out.",
-      error_entity: $scope.login_error
+    $http({ method: 'DELETE', url: '../users/sign_out.json' })
+    .success(function(data, status){
+      if (status == 201 || status == 204){
+        $scope.currentUser = Users.get_current_user();      
+        $scope.reset_users();
+        flash.setMessage("You have been logged out.");
+        $state.go('login');
+      } else if (data.error) {
+       $scope.login_error.message = data.error;
+      }
     });
   };
 
@@ -56,6 +61,7 @@ angular.module('app.auth', [])
       success_message: "You have been registered and logged in.",
       error_entity: $scope.register_error                   
     });
+
   }
 
   $scope.submit = function(parameters) {
@@ -68,7 +74,6 @@ angular.module('app.auth', [])
         $scope.reset_users();
         flash.setMessage(parameters.success_message);
         $state.go('list');
-        flash.setMessage(parameters.success_message);
       } else if (data.error) {
         parameters.error_entity.message = data.error;
       }
