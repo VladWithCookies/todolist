@@ -1,0 +1,9 @@
+html
+  head
+    title TodoList
+    base href="/"
+    = stylesheet_link_tag 'application'
+    
+  body ng-app="app"
+    = yield
+    = javascript_include_tag 'application'

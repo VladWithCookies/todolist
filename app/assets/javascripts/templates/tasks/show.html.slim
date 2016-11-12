@@ -1,0 +1,29 @@
+div ng-include="'partials/nav_bar.html'" 
+.container
+  h2 ng-bind="task.title"
+
+  h3 Choose deadline
+  md-datepicker ng-model="task.deadline" ng-change="addDeadline(task)"
+
+  h3 Add comment
+  form ng-submit="addComment(task)"
+    .input-group
+      input.form-control type="text" name="comment[text]" ng-model="comment.text"
+      span.input-group-btn
+        button type="submit" class="btn btn-primary" Submit
+
+
+  h3 Comments
+  ul class="list-group"
+    li class="list-group-item" ng-repeat="comment in task.comments" 
+      .row
+        .col-md-10
+          span ng-bind="comment.text"
+        .col-md-2
+          span.glyphicon.glyphicon-trash.delete-comment ng-click="deleteComment(comment)"
+          span.glyphicon.glyphicon-paperclip ui-sref="add_file({id: comment.id })"
+      
+      .row
+        .col-md-2 ng-repeat="file in comment.comment_files"
+          a href="{{file.comment_file.url}}" class="thumbnail"
+            img ng-src="{{file.comment_file.url}}"
